@@ -28,13 +28,18 @@ int main(int argc, char **argv){
 
   int i=0;
 
+  char userInput[64];
+
+  printf("Enter your Expression: ");
+  scanf("%s",userInput);
+
 //iterates through command line argument and sorts by digit or operand
   do {
 
     // if digit, it is then added to stack
-    if (isdigit(argv[1][i]))
+    if (isdigit(userInput[i]))
     {
-        digit = (argv[1][i]) - 48;
+        digit = (userInput[i]) - 48;
         push(digit, stack, &top);
 
       // if operand is discoverd top 2 elements are poped and evaluated
@@ -43,7 +48,7 @@ int main(int argc, char **argv){
         num2 = pop(stack, &top);
         num1 = pop(stack, &top);
 
-        switch (argv[1][i]) {
+        switch (userInput[i]) {
           case '+':
           {
             result = num1 + num2;
@@ -73,7 +78,7 @@ int main(int argc, char **argv){
     }
     i++;
 
-  } while(argv[1][i]);
+  } while(userInput[i]);
 
 
   printf("The answer is %.2f\n", pop(stack, &top) );
